@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Data Repository</title>
+<title>Hello WebSocket</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<!-- <link href="/main.css" rel="stylesheet"></link> -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/webRepository.js"></script>
+</head>
+
+<body>
+	<table class =" table table-striped">
+	<tr>
+	<th>id</th>
+	<th>test_start_time</th>
+	<th>web_message_send_time</th>
+	<th>message_type</th>
+	<th>phone_number</th>
+	<th>Android_message_recieve_time</th>
+	<th>request_send_time</th>
+	<th>request_recieve_time</th>
+	<th>Andriod_message_send_time</th>
+	<th>test_end_time</th>
+	</tr>
+	
+	
+		<tr th:each="message : ${messages}">
+			<td th:text="${message.getId()}"></td>
+			<td th:text="${message.getTestStartTime()}"></td>
+			<td th:text="${message.getWebMessageSendTime()}"></td>
+			<td th:text="${message.getMessageType()}"></td>
+			<td th:text="${message.getPhoneNumber()}"></td>
+			<td th:text="${message.getAndMessageRecieveTime()}"></td>
+			<td th:text="${message.getRequestSendTime()}"></td>
+			<td th:text="${message.getRequestRecieveTime()}"></td>
+			<td th:text="${message.getAndMessageSendTime()}"></td>
+			<td th:text="${message.getTestEndTime()}"></td>
+		</tr>
+	</table>
+</body>
+
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Schedule Create</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"></link>
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+	rel="stylesheet"></link>
+<script
+	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<!-- <link href="/main.css" rel="stylesheet"></link> -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="bootstrap-checkbox.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/webRepository.js"></script>
+</head>
+<body>
+
+	<form class="form-horizontal">
+		<h3 class="text-center">Add or Modify a scheduled task</h3>
+		<div class="form-group">
+			<lable class="col-md-offset-2 col-md-2 control-lable">Interval</lable>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Interval input"></input>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<lable class="col-md-offset-2 col-md-2 control-lable">repeatCount</lable>
+			<div class="col-md-4">
+				<input type="text" class="form-control" placeholder="Repeat count"></input>
+			</div>
+		</div>
+	</form>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 col-sm-3">
+				<div class="checkbox text-center">
+					<label> <input type="checkbox"> Enable this task</input>
+					</label>
+					<p class="text-center">Months</p>
+				</div>
+
+				<div>
+					<table align="center">
+						<tr>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month1" type="checkbox" name="month" />January
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month2" type="checkbox" name="month" />February
+							</label></td>
+
+						</tr>
+
+						<tr>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month3" type="checkbox" name="month" />March
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month4" type="checkbox" name="month" />April
+							</label></td>
+
+						</tr>
+
+						<tr>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month5" type="checkbox" name="month" />May
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month6" type="checkbox" name="month" />June
+							</label></td>
+
+						</tr>
+
+						<tr>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month7" type="checkbox" name="month"/>July
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month8" type="checkbox" name="month" />August
+							</label></td>
+
+						</tr>
+
+						<tr>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month9" type="checkbox" name="month" />September
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month10" type="checkbox" name="month" />October
+							</label></td>
+
+						</tr>
+
+						<tr>
+
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month11" type="checkbox" name="month" />November
+							</label></td>
+							<td><label class="btn btn-primary btn-block"
+								data-toggle="button"> <input id="month12" type="checkbox" name="month" />December
+							</label></td>
+
+						</tr>
+
+						<tr>
+							<td colspan="2"><button type="button" id="monthAll" class="btn btn-default btn-block">SET
+									ALL</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<script>
+			
+			$('#monthAll').click(function{
+				$('input[name=month]').prop('checked',true);
+			});
+
+			</script>
+			<form>
+				<div class="col-md-4 col-sm-6">
+					<div class="checkbox text-center">
+						<input type="checkbox"> Run at system boot up</input>
+						<p class="text-center">Days of Month</p>
+						<table align="center">
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />1
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />2
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />3
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />4
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />5
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />6
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />7
+								</label></td>
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />8
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />9
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />10
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />11
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />12
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />13
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />14
+								</label></td>
+
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />15
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />16
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />17
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />18
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />19
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />20
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />21
+								</label></td>
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />22
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />23
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />24
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />25
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />26
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />27
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />28
+								</label></td>
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />29
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />30
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />31
+								</label></td>
+								<td colspan="4"><button class="btn btn-primary btn-block"
+									>Set All
+								</button></td>
+							</tr>
+						</table>
+
+						<a class="text-center">Days of Week</a>
+						<table align="center">
+							<tr>
+							<td ><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Monday
+								</label></td>
+								<td ><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Tuesday
+								</label></td>
+								
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Wednesday
+								</label></td>
+								<td ><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Thursday
+								</label></td>
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Friday
+								</label></td>
+								<td ><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Saturday
+								</label></td>
+							</tr>
+
+							<tr>
+								<td ><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />Sunday
+								</label></td>
+								<td ><button class="btn btn-primary btn-block">Set
+										All</button></td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+			</form>
+
+			<div class="col-md-4 col-sm-6">
+				<div class="checkbox text-center">
+					<label> <input type="checkbox">Run every day</input>
+					</label>
+					<p class="text-center">Hours</p>
+				</div>
+
+				<form class="form-inline text-center">
+					<label>AM</label>
+					<div class="form-group">
+
+						<table align="center">
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />00
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />01
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />02
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />03
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />04
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />05
+								</label></td>
+
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />06
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />07
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />08
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />09
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />10
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />11
+								</label></td>
+
+							</tr>
+						</table>
+					</div>
+				</form>
+
+				<form class="form-inline text-center">
+					<label>PM</label>
+					<div class="form-group ">
+
+						<table align="center">
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />12
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />13
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />14
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />15
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />16
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />17
+								</label></td>
+							</tr>
+
+							<tr>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />18
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />19
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />20
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />21
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />22
+								</label></td>
+								<td><label class="btn btn-primary btn-block"
+									data-toggle="button"> <input type="checkbox" />23
+								</label></td>
+							</tr>
+						</table>
+						<button class="btn btn-default btn-block">Set All</button>
+					</div>
+				</form>
+
+				<p class="text-center">Minutes</p>
+				<table align="center">
+					<tr>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />00
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />05
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />10
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />15
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />20
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />25
+						</label></td>
+					</tr>
+
+					<tr>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />30
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />35
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />40
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />45
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />50
+						</label></td>
+						<td><label class="btn btn-primary btn-block"
+							data-toggle="button"> <input type="checkbox" />55
+						</label></td>
+					</tr>
+				</table>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+	<div class="col-md-offset-6">
+		<button type="button" class="btn btn-default">Submit</button>
+	</div>
+
+
+</body>
+
+</html>
